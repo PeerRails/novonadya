@@ -1,0 +1,45 @@
+%Nadia.Model.Update{
+  chosen_inline_result: nil,
+  inline_query: nil,
+  message: %Nadia.Model.Message{
+    audio: nil,
+    caption: nil,
+    channel_chat_created: nil,
+    chat: %Nadia.Model.Chat{
+      first_name: nil,
+      id: -666,
+      last_name: nil,
+      title: "testnadya",
+      type: "group",
+      username: nil
+      },
+    contact: nil,
+    date: 1476101324,
+    delete_chat_photo: nil,
+    document: nil,
+    forward_date: nil,
+    forward_from: nil,
+    from: %Nadia.Model.User{
+      first_name: "Nadya",
+      id: 7,
+      last_name: "Zlaya",
+      username: "nadyabooot"
+      },
+    group_chat_created: nil,
+    left_chat_participant: nil,
+    location: nil,
+    message_id: 2,
+    migrate_from_chat_id: nil,
+    migrate_to_chat_id: nil,
+    new_chat_participant: nil,
+    new_chat_photo: [],
+    new_chat_title: nil,
+    photo: [],
+    reply_to_message: nil,
+    sticker: nil,
+    supergroup_chat_created: nil,
+    text: "слышь",
+    video: nil,
+    voice: nil
+  },
+ update_id: 777}
