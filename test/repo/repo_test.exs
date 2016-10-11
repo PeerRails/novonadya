@@ -1,7 +1,6 @@
 defmodule Novonadya.RepoTest do
   use ExUnit.Case
-
-  alias Novonadya.Repo
+  use Novonadya.ModelCase
 
 
 end
