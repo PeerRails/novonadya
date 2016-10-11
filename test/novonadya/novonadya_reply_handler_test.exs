@@ -40,4 +40,20 @@ defmodule Novonadya.ReplyHandlerTest do
                     |> where([chat], chat.chat_id == ^@update.message.chat.id)
                     |> Repo.all
   end
+
+  test "command /start in existing chat" do
+    @bot_reply.reply(@update)
+    assert [@update.message.chat.id] == Chat
+                    |> select([chat], chat.chat_id)
+                    |> where([chat], chat.chat_id == ^@update.message.chat.id)
+                    |> Repo.all
+  end
+
+  test "command /stop in existing chat" do
+    @bot_reply.reply(%{message: %{chat: %{id: -666}, text: "/stop"} })
+    refute [@update.message.chat.id] == Chat
+                    |> select([chat], chat.chat_id)
+                    |> where([chat], chat.chat_id == ^@update.message.chat.id)
+                    |> Repo.all
+  end
 end
