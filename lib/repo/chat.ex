@@ -17,4 +17,13 @@ defmodule Novonadya.Chat do
     |> Ecto.Changeset.cast(params, [:chat_id, :title], ~w(chat_id))
     |> Ecto.Changeset.unique_constraint(:chat_id)
   end
+
+  @doc """
+  Save chat to database
+  """
+  @spec save(Map) :: {atom, Ecto.Model | Ecto.Changeset}
+  def save(attrs) do
+    chat = Novonadya.Chat.changeset(%Novonadya.Chat{}, attrs)
+    result = Novonadya.Repo.insert! chat
+  end
 end

@@ -6,14 +6,14 @@ defmodule Novonadya do
     "hello"
   end
 
-  def start(_type, _args) do
+  def start(name) do
     #Should start Supervisor
     import Supervisor.Spec, warn: false
 
     children = [
       worker(Novonadya.Repo, [])
     ]
-    opts = [strategy: :one_for_one, name: Novonadya.Supervisor]
+    opts = [strategy: :one_for_one, name: name]
     Supervisor.start_link(children, opts)
   end
 

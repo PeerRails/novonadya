@@ -1,5 +1,5 @@
 defmodule Novonadya.ReplyHandlerTest do
-  use ExUnit.Case
+  use ExUnit.Case, async: false
   alias Novonadya.Repo
   alias Novonadya.Chat
   import Ecto.Query
@@ -28,9 +28,9 @@ defmodule Novonadya.ReplyHandlerTest do
     }
   }
 
-  setup_all do
-    {:ok, pid} = Novonadya.start(nil, nil)
-    {:ok, [pid: pid]}
+  setup context do
+    {:ok, registry} = Novonadya.start(context.test)
+    {:ok, registry: registry}
   end
 
   test "command /start in new chat" do
