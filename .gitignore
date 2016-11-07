@@ -3,4 +3,5 @@
 /db
 /deps
 erl_crash.dump
+/Mnesia.*
 *.ez

@@ -1,14 +1,14 @@
 defmodule Novonadya do
   use Application
+  use Amnesia
+  use Novodb
 
-  # Return "hello"
-  def hello do
-    "hello"
-  end
-
-  def start(name) do
+  def start(name, _) do
     #Should start Supervisor
     import Supervisor.Spec, warn: false
+
+    Amnesia.start
+    Novodb.wait
 
     children = [
       worker(Novonadya.Repo, [])

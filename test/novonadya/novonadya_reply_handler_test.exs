@@ -2,7 +2,7 @@ defmodule Novonadya.ReplyHandlerTest do
   use ExUnit.Case, async: false
   alias Novonadya.Repo
   alias Novonadya.Chat
-  import Ecto.Query
+  use Amnesia
 
   @bot_reply Novonadya.ReplyHandler
   @update %Nadia.Model.Update{
