@@ -1,8 +1,7 @@
 defmodule Novonadya.ReplyHandlerTest do
   use ExUnit.Case, async: false
-  alias Novonadya.Repo
-  alias Novonadya.Chat
   use Amnesia
+  use Novodb
 
   @bot_reply Novonadya.ReplyHandler
   @update %Nadia.Model.Update{
@@ -35,25 +34,19 @@ defmodule Novonadya.ReplyHandlerTest do
 
   test "command /start in new chat" do
     @bot_reply.reply(@update)
-    assert [@update.message.chat.id] == Chat
-                    |> select([chat], chat.chat_id)
-                    |> where([chat], chat.chat_id == ^@update.message.chat.id)
-                    |> Repo.all
+    chat_id = @update.message.chat.id
+    assert [chat_id] == Chat.select_chat(chat_id).chat_id
   end
 
-  test "command /start in existing chat" do
+  test "command /start in existing chat should not create new record" do
     @bot_reply.reply(@update)
-    assert [@update.message.chat.id] == Chat
-                    |> select([chat], chat.chat_id)
-                    |> where([chat], chat.chat_id == ^@update.message.chat.id)
-                    |> Repo.all
+    chat_id = @update.message.chat.id
+    assert length(Chat.select_chat(chat_id)) == 1
   end
 
   test "command /stop in existing chat" do
     @bot_reply.reply(%{message: %{chat: %{id: -666}, text: "/stop"} })
-    refute [@update.message.chat.id] == Chat
-                    |> select([chat], chat.chat_id)
-                    |> where([chat], chat.chat_id == ^@update.message.chat.id)
-                    |> Repo.all
+    chat_id = -666
+    assert is_nil(Chat.select_chat(-666)) == true
   end
 end
